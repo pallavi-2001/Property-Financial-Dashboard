@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-purple-700 {
+    color: #6b21a8;
+  }
+  .text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .p-4 {
+    padding: 1rem;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+}

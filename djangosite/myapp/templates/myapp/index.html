@@ -1,0 +1,278 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Homepage</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+   <link rel="stylesheet" href="{% static 'myapp/manual.css' %}">
+   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-indigo-900 py-2 md:py-4 shadow-lg">
+        <div class="container px-4 md:flex md:items-center mx-auto">
+            <a href="#" class="font-bold text-2xl text-white">Propfolio </a>
+        </div>
+    </nav>
+
+   
+
+    <div class="bg-indigo-200 m-7 p-6">
+        <div class="text-4xl text-gray-800 font-medium">Hello Everyone 👋,</div><br>
+        <div class="text-4xl text-gray-800 font-medium">Welcome to the Property Financial Dashboard!</div>
+        <br>
+        <div>This web application allows you to upload a CSV file containing your property-related income and expenses. The system automatically calculates net income and expenses from your file and displays the results in an organized table and interactive charts. You just upload a properly formatted CSV file and visualize your financial summary instantly. </div>
+        <br>
+        <div>This tool is built to help property owners quickly understand and track their financial data with ease.</div>
+    </div>
+
+    <div class=" text-2xl font-bold bg-indigo-200 m-7 p-6">
+        <div class="mt-4">Upload and Visualize data quickly with our reporting tool </div>
+    </div>
+
+     <div class="flex">
+        <div class="w-1/2">
+            <div class="m-10 font-bold text-indigo-600">Upload CSV file</div>
+            <div class="container mx-auto w-full max-w-xs">
+                <form class="bg-white rounded px-8 pt-6 pb-8 mb-4" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input class =" inline-block font-bold text-sm text-blue-500" type="file" name="file" id="fileid" required>
+                    <br>
+                    <br>
+                    <input class="bg-blue-500 rounded font-blod mx-auto block py-2 px-4"type="submit" name="submit" id="submited">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-10 font-bold text-indigo-600">Property stats</div>
+
+    <div class="container mx-auto flex justify-center">
+        <div class="flex flex-col">
+            <div class="w-full">
+                <div class="border-b border-gray-100 shadow">
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Property-name</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Price</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Rent</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> EMi</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Tax</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Monthly-expense</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Net-expense</th>
+                                <th class="px-6 py-2 text-sm text-gray-500"> Net-income</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for objects in data_objects %}
+                            <tr>
+                                <td class="px-6 py-4 text-sm text-gray-500 font-bold">{{objects.name}}</td>
+                                <td class="px-6 py-4 text-sm text-green-500">{{objects.price}}</td>
+                                <td class="px-6 py-4 text-sm text-green-500">{{objects.rent}}</td>
+                                <td class="px-6 py-4 text-sm text-red-500">{{objects.emi}}</td>
+                                <td class="px-6 py-4 text-sm text-red-500">{{objects.tax}}</td>
+                                <td class="px-6 py-4 text-sm text-red-500">{{objects.expense}}</td>
+                                <td class="px-6 py-4 text-sm text-red-500">{{objects.expense_monthly}}</td>
+                                <td class="px-6 py-4 text-sm text-green-500">{{objects.income_monthly}}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td class="px-6 py-4 text-sm text-gray-500 font-bold">Total</td>
+                                <td id="totalprice"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totalrent"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totalemi"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totaltax"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totalmexp"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totalnexp"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                                <td id="totalninc"class="px-6 py-4 text-sm text-gray-500 font-bold">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex gap-8 m-10">
+
+        <div class="w-2/4">
+            <div class="text-indigo-600 font-bold m-10">Income Chart</div>
+            <div>
+                <canvas id="myChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="w-2/4">
+            <div class="text-indigo-600 font-bold m-10">Expense Chart</div>
+            <div>
+                <canvas id="myChart1" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <script>
+
+
+        table=document.getElementById("table");
+        //declaring variables to hold cell values
+        let net_prices=0,net_rent=0,net_EMI=0,net_MExp=0,net_exp=0,net_Ninc=0,net_tax=0;
+        //declaring variable to told total 
+        let total_prices=0,total_rent=0,total_EMI=0,total_MExp=0,total_NExp=0,total_Ninc=0,total_tax=0;
+        //declaring variable to hold property
+        let property=""
+        //Array to hold net income of all the propeties which requires in chart
+        let net_incomes=[]
+        
+        let net_expense=[]
+        //Array to hold each property name
+        let properties=[]
+
+        for(let i=1;i<table.rows.length-1;i++){
+            //getting each value of the cell
+            net_prices=table.rows[i].cells[1].innerText;
+            net_rent=table.rows[i].cells[2].innerText;
+            net_EMI=table.rows[i].cells[3].innerText;
+            net_tax=table.rows[i].cells[4].innerText;
+            net_MExp=table.rows[i].cells[5].innerText;
+            net_NExp=table.rows[i].cells[6].innerText;
+            net_Ninc=table.rows[i].cells[7].innerText;
+            property=table.rows[i].cells[0].innerText;
+           
+            //pushing net income of each properties into an array
+            net_incomes.push(net_Ninc)
+            net_expense.push(net_NExp)
+            properties.push(property)
+
+            //converting into a integer value
+            net_prices=parseInt(net_prices);
+            net_rent=parseInt(net_rent);
+            net_EMI=parseInt(net_EMI);
+            net_tax=parseInt(net_tax);
+            net_MExp=parseInt(net_MExp);
+            net_NExp=parseInt(net_NExp);
+            net_Ninc=parseInt(net_Ninc);
+
+
+            //calculating total value
+            total_prices+=net_prices;
+            total_rent+=net_rent;
+            total_EMI+=net_EMI;
+            total_tax+=net_tax
+            total_MExp+=net_MExp
+            total_NExp+=net_NExp
+            total_Ninc+=net_Ninc
+
+
+
+        }
+        document.getElementById("totalprice").innerHTML=total_prices
+        document.getElementById("totalrent").innerHTML=total_rent
+        document.getElementById("totalemi").innerHTML=total_EMI
+        document.getElementById("totaltax").innerHTML=total_tax
+        document.getElementById("totalmexp").innerHTML=total_MExp
+        document.getElementById("totalnexp").innerHTML=total_NExp
+        document.getElementById("totalninc").innerHTML=total_Ninc
+
+
+        //printing net value
+        console.log(total_prices);
+        console.log(total_rent);
+        console.log(total_EMI);
+        console.log(total_tax);
+        console.log(total_EMI);
+        console.log(total_NExp);
+        console.log(total_Ninc);
+
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: properties,
+                datasets: [
+                    {
+                        label: 'Income in Rupies',
+                        data: net_incomes,
+                        backgroundColor: [
+                        'rgba(75, 192, 192, 1.5)',
+                        'rgba(75, 192, 192, 1.5)',
+                        'rgba(75, 192, 192, 1.5)',
+                        'rgba(75, 192, 192, 1.5)',
+                        'rgba(75, 192, 192, 1.5)',
+                        ],
+                        borderColor: 'rgba(0, 0, 0, 0.1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        const ctx1 = document.getElementById('myChart1').getContext('2d');
+        const myChart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: properties,
+                datasets: [
+                    {
+                        label: 'Expense in Rupies',
+                        data: net_expense,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1.5)',
+                            'rgba(255, 99, 132, 1.5)',
+                            'rgba(255, 99, 132, 1.5)',
+                            'rgba(255, 99, 132, 1.5)',
+                            'rgba(255, 99, 132, 1.5)',
+                        ],
+                        borderColor: 'rgba(0, 0, 0, 0.1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+    </script>
+
+    {% if success %}
+    <script>
+        window.addEventListener("load", function () {
+            document.getElementById("successPopup").classList.remove("hidden");
+        });
+    </script>
+    {% endif %}
+
+    
+    <div id="successPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+        <div class="bg-white p-6 rounded shadow-lg text-center">
+            <h2 class="text-2xl font-bold text-green-600 underline mb-2">✅ Upload Successful!</h2>
+            <p>Your CSV file has been processed.</p>
+            <button onclick="document.getElementById('successPopup').classList.add('hidden')"
+            class="mt-4 bg-green-500 text-white px-4 py-2 rounded">OK</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
