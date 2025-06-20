@@ -1,0 +1,20 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\suresh\Desktop\PythonProject\djangosite\.npmrc
+5 silly config load:file:C:\Users\suresh\.npmrc
+6 silly config load:file:C:\Users\suresh\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm list tailwindcss
+8 verbose argv "list" "tailwindcss"
+9 verbose logfile logs-max:10 dir:C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_50_16_627Z-
+10 verbose logfile C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_50_16_627Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 verbose cwd C:\Users\suresh\Desktop\PythonProject\djangosite\node_modules
+15 verbose os Windows_NT 10.0.19045
+16 verbose node v22.16.0
+17 verbose npm  v10.9.2
+18 verbose exit 0
+19 info ok

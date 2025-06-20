@@ -1,0 +1,30 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\suresh\Desktop\PythonProject\djangosite\.npmrc
+5 silly config load:file:C:\Users\suresh\.npmrc
+6 silly config load:file:C:\Users\suresh\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install tailwindcss
+8 verbose argv "install" "--save-dev" "tailwindcss"
+9 verbose logfile logs-max:10 dir:C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_52_54_927Z-
+10 verbose logfile C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_52_54_927Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest tailwindcss@^4.1.10
+16 silly packumentCache full:https://registry.npmjs.org/tailwindcss cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/tailwindcss 659ms (cache revalidated)
+18 silly packumentCache full:https://registry.npmjs.org/tailwindcss set size:9127269 disposed:false
+19 silly placeDep ROOT tailwindcss@4.1.10 REPLACE for: djangosite@1.0.0 want: ^4.1.10
+20 silly reify moves {}
+21 silly audit bulk request { tailwindcss: [ '4.1.10' ] }
+22 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 415ms
+23 silly audit report {}
+24 verbose cwd C:\Users\suresh\Desktop\PythonProject\djangosite\node_modules
+25 verbose os Windows_NT 10.0.19045
+26 verbose node v22.16.0
+27 verbose npm  v10.9.2
+28 verbose exit 0
+29 info ok

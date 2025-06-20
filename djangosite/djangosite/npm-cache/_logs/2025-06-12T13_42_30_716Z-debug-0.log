@@ -1,0 +1,43 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\suresh\Desktop\PythonProject\djangosite\.npmrc
+5 silly config load:file:C:\Users\suresh\.npmrc
+6 silly config load:file:C:\Users\suresh\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm exec taiwindcss -i myapp/src/tw.css -o myapp/static/myapp/styles.css
+8 verbose argv "exec" "--" "taiwindcss" "-i" "myapp/src/tw.css" "-o" "myapp/static/myapp/styles.css"
+9 verbose logfile logs-max:10 dir:C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_42_30_716Z-
+10 verbose logfile C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_42_30_716Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+14 http fetch GET 404 https://registry.npmjs.org/taiwindcss 2398ms (cache skip)
+15 http fetch GET 404 https://registry.npmjs.org/taiwindcss 891ms (cache skip)
+16 verbose stack HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/taiwindcss - Not found
+16 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-fetch\lib\check-response.js:103:15
+16 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+16 verbose stack     at async RegistryFetcher.packument (C:\Program Files\nodejs\node_modules\npm\node_modules\pacote\lib\registry.js:90:19)
+16 verbose stack     at async RegistryFetcher.manifest (C:\Program Files\nodejs\node_modules\npm\node_modules\pacote\lib\registry.js:128:23)
+16 verbose stack     at async getManifest (C:\Program Files\nodejs\node_modules\npm\node_modules\libnpmexec\lib\index.js:27:22)
+16 verbose stack     at async missingFromTree (C:\Program Files\nodejs\node_modules\npm\node_modules\libnpmexec\lib\index.js:60:22)
+16 verbose stack     at async C:\Program Files\nodejs\node_modules\npm\node_modules\libnpmexec\lib\index.js:182:32
+16 verbose stack     at async Promise.all (index 0)
+16 verbose stack     at async exec (C:\Program Files\nodejs\node_modules\npm\node_modules\libnpmexec\lib\index.js:180:3)
+16 verbose stack     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+17 verbose statusCode 404
+18 verbose pkgid taiwindcss@*
+19 error code E404
+20 error 404 Not Found - GET https://registry.npmjs.org/taiwindcss - Not found
+21 error 404
+22 error 404  'taiwindcss@*' is not in this registry.
+23 error 404
+24 error 404 Note that you can also install from a
+25 error 404 tarball, folder, http url, or git url.
+26 verbose cwd C:\Users\suresh\Desktop\PythonProject\djangosite\node_modules
+27 verbose os Windows_NT 10.0.19045
+28 verbose node v22.16.0
+29 verbose npm  v10.9.2
+30 verbose exit 1
+31 verbose code 1
+32 error A complete log of this run can be found in: C:\Users\suresh\AppData\Local\npm-cache\_logs\2025-06-12T13_42_30_716Z-debug-0.log
